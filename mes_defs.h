@@ -37,6 +37,7 @@ enum Tendance { A_LA_BAISSE, STABLE, A_LA_HAUSSE };
 /* prototypes de fonctions */
 //char correction(enum Season, char letter);
 int p_to_p0 (int);
+float p_to_p0(float,float,float);
 char p_to_letter_in_rising(int);
 char p_to_letter_in_steady(int);
 char p_to_letter_in_falling(int);
@@ -88,7 +89,7 @@ struct Barometer falling[10]={
                 {9, 'X',"Very Unsettled, Rain", 985}
         };
 
-        struct Barometer steady[11]={
+struct Barometer steady[11]={
                 {0,'\0',"",0},
                 {1, 'A',"Settled Fine",         1033},
                 {2, 'B',"Fine Weather",         1023},
@@ -104,7 +105,7 @@ struct Barometer falling[10]={
         };
 
 
-       struct Barometer rising[14]={
+struct Barometer rising[14]={
                 {0,'\0',"",0},
                 {1, 'A',"Settled Fine", 1030},
                 {2, 'B',"Fine Weather", 1022},

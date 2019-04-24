@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 		std::cout << rising[i].number << " " << rising[i].letter << " " << rising[i].text << " " << rising[i].pressure << std::endl;
 	}
 
-	/********************* TODO *****************************************/
+	/***************************************** TODO *****************************************/
 
 	/*
 	 * A Winter falling generally results in a Z value lower by 1 unit compared with a Summer falling pressure. 
@@ -40,11 +40,18 @@ int main(int argc, char* argv[]) {
 	 *
 	 */ 
 
+
+	
+
 	int p=1015;
 	int deltaP;
 	Season season = SUMMER;
 	Tendance tendance=A_LA_HAUSSE;
 	char letter='\0';
+
+
+	
+
 
 	switch(tendance) {
 
@@ -179,55 +186,16 @@ int p_to_p0 (int p){
 	return p;
 }
 
+//entree: la pression 
+//	  la temperature 
+//	  l altitude
+//sortie: la pression au niveau de la mer
+//--------------------------------------------------
+float p_to_p0(float p, float t, float h) {
+	float p0=0.0f;
+	
+	p0 = p * pow(1-((0.0065*h)/(t*0.0065*h+273.15)),-5.257)
 
-/*
-
-
-
-
-	// entree : la pression
-	// sortie : la lettre ou pointeur sur la srtucture contenant la lettre
-	//
-	char pressure_to_lettre(int pression)
-
-
-	if ( deltaP < 0 ) { tendance == A_LA_BAISSE; }
-	if ( deltaP > 0 ) { tendance == A_LA_HAUSSE; }
-	if ( deltaP == 0) { tendance == STABLE; }
-
-
-
-
-	if ( season == WINTER && tendance == A_LA_BAISSE ) {
-
-		//Winter + tendance a la baisse => barometre falling
-		letter=correction_winter(&falling,letter);
-	}
-
-	if ( season == SUMMER && tendance == A_LA_HAUSSE ) {
-
-		//letter++ dans le tableau rising
-		//Summer + tendance a la hausse => barometre rising
-		letter=correction_summer(&rising,letter);
-	}
-
-
-	*/
-
-/*
-
-//letter-- dans le tableau falling
-char correction_winter(struct Barometer *barometer, ) {
-
-
-
-	}
-
-
-
+	return p0;
 }
 
-
-
-
-*/
