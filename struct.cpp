@@ -2,14 +2,21 @@
 #include <string>
 #include "mes_defs.h"
 
-
+#include <math.h>
 
 
 int main(int argc, char* argv[]) {
 
+	float H=1000.0f;
+	float P=980.0f;
+	float T=15.0f;
+	
+	std::cout << "Sea Level Pressure : " << p_to_p0(P,T,H) << std::endl;
 
 
-
+	return 0;
+}
+/*
 
 	std::cout << "the forecast letter scale" << std::endl;
 	for (int i=0; i<26; i++){
@@ -32,13 +39,12 @@ int main(int argc, char* argv[]) {
 		std::cout << rising[i].number << " " << rising[i].letter << " " << rising[i].text << " " << rising[i].pressure << std::endl;
 	}
 
-	/***************************************** TODO *****************************************/
 
-	/*
+	/ *
 	 * A Winter falling generally results in a Z value lower by 1 unit compared with a Summer falling pressure. 
 	 * Similarly a Summer rising, improves the prospects by 1 unit over a Winter rising.
 	 *
-	 */ 
+	 * / 
 
 
 	
@@ -48,9 +54,6 @@ int main(int argc, char* argv[]) {
 	Season season = SUMMER;
 	Tendance tendance=A_LA_HAUSSE;
 	char letter='\0';
-
-
-	
 
 
 	switch(tendance) {
@@ -84,8 +87,8 @@ int main(int argc, char* argv[]) {
 
 
 
-	return 0;
-}
+//	return 0;
+}*/
 
 //entree: la lettre
 //sortie: la lettre+1 dans le tableau rising
@@ -174,27 +177,19 @@ char p_to_letter_in_falling(int p) {
 
 
 
-
-
-
-
-//entree : la pression du capteur
-//sortie : la pression au niveau de la mer
-//----------------------------------------
-int p_to_p0 (int p){
-	// TODO
-	return p;
-}
-
+//-----------------------------------------------------
 //entree: la pression 
 //	  la temperature 
 //	  l altitude
 //sortie: la pression au niveau de la mer
-//--------------------------------------------------
+//-----------------------------------------------------
+//TEST: https://keisan.casio.com/exec/system/1224575267
+//	H=1000m, P=980hPa, T=15°C => P0=1101.93hPa
+//-----------------------------------------------------
 float p_to_p0(float p, float t, float h) {
 	float p0=0.0f;
 	
-	p0 = p * pow(1-((0.0065*h)/(t*0.0065*h+273.15)),-5.257)
+	p0 = p * pow(1-((0.0065*h)/(t+0.0065*h+273.15)),-5.257);
 
 	return p0;
 }
